@@ -13,13 +13,16 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="TasksOnly">
+      <UniqueIdentifier>{181f7c1e-f974-4f7b-82c8-e6b2fea55273}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Prog.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Task1.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="Task.cpp">
+      <Filter>TasksOnly</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

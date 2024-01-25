@@ -9,8 +9,6 @@ using namespace std;
 int main()
 {
 	int number;
-	
-
 	cout << "Enter any number: \n";
 	cin >> number;
 
