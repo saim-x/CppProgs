@@ -31,11 +31,5 @@ int main()
 
 	delete[] numberarray;
 	return 0;
-
-
-
-
-
-
 }
 
