@@ -2,9 +2,15 @@
 //
 
 #include <iostream>
-
+using namespace std;
 int main()
 {
-    std::cout << "H  ello World!\n";sst
+    int number;
+    cout << "Enter any number: \n";
+    cin >> number;
+
+
+    
+
 }
 
