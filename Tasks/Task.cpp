@@ -64,6 +64,49 @@ using namespace std;
 //}
 
 int d_main() {
+	int array_size;
+	int target;
+	int answer[2];
+	int flag = 0;
+	cout << "Enter the size of the array: ";
+	cin >> array_size;
+	int *array = new int[array_size];
+	for (int i = 0; i < array_size; i++)
+	{
+		cout << "Enter the " << i + 1 << " number ";
+		cin >> array[i];
+	}
+	cout << "Enter the target number ";
+	cin >> target;
+	int count = 0;
+	for (int i = 0; i < array_size; i++)
+	{
+		for (int j = 0; j < array_size; j++)
+		{
+			if (array[i] + array[j] == target) {
+				answer[0] = i;
+				answer[1] = j;
+				flag = 1;
+				break;
+
+			}
+			
+		}
+		if (flag)
+		{
+			break;
+		}
+	}
+	if (flag)
+	{
+		cout << "The two number's indexes are: " << answer[0] << " and " << answer[1] << endl;
+
+	}
+	else {
+		cout << "No such numbers exist" << endl;
+		return 0;
+	}
+
 
 }
 int main() {
