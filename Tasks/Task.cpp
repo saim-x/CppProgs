@@ -62,54 +62,118 @@ using namespace std;
 //        }
 //        return 0;
 //}
+//
+//int d_main() {
+//	int array_size;
+//	int target;
+//	int answer[2];
+//	int flag = 0;
+//	cout << "Enter the size of the array: ";
+//	cin >> array_size;
+//	int *array = new int[array_size];
+//	for (int i = 0; i < array_size; i++)
+//	{
+//		cout << "Enter the " << i + 1 << " number ";
+//		cin >> array[i];
+//	}
+//	cout << "Enter the target number ";
+//	cin >> target;
+//	int count = 0;
+//	for (int i = 0; i < array_size; i++)
+//	{
+//		for (int j = 0; j < array_size; j++)
+//		{
+//			if (array[i] + array[j] == target) {
+//				answer[0] = i;
+//				answer[1] = j;
+//				flag = 1;
+//				break;
+//
+//			}
+//			
+//		}
+//		if (flag)
+//		{
+//			break;
+//		}
+//	}
+//	if (flag)
+//	{
+//		cout << "The two number's indexes are: " << answer[0] << " and " << answer[1] << endl;
+//
+//	}
+//	else {
+//		cout << "No such numbers exist" << endl;
+//		return 0;
+//	}
+//}
 
-int d_main() {
-	int array_size;
-	int target;
-	int answer[2];
-	int flag = 0;
-	cout << "Enter the size of the array: ";
-	cin >> array_size;
-	int *array = new int[array_size];
-	for (int i = 0; i < array_size; i++)
-	{
-		cout << "Enter the " << i + 1 << " number ";
-		cin >> array[i];
-	}
-	cout << "Enter the target number ";
-	cin >> target;
-	int count = 0;
-	for (int i = 0; i < array_size; i++)
-	{
-		for (int j = 0; j < array_size; j++)
-		{
-			if (array[i] + array[j] == target) {
-				answer[0] = i;
-				answer[1] = j;
-				flag = 1;
-				break;
-
-			}
-			
-		}
-		if (flag)
-		{
-			break;
-		}
-	}
-	if (flag)
-	{
-		cout << "The two number's indexes are: " << answer[0] << " and " << answer[1] << endl;
-
-	}
-	else {
-		cout << "No such numbers exist" << endl;
-		return 0;
-	}
 
 
-}
-int main() {
-	d_main();
-	return 0;
-}
+//#include <iostream>
+//
+//using namespace std;
+//
+//void func(int** matrix, int rows, int cols) {
+//    int top = 0, bottom = rows - 1, left = 0, right = cols - 1;
+//
+//    while (top <= bottom && left <= right) {
+//        for (int i = left; i <= right; ++i)
+//            cout << matrix[top][i] << " ";
+//        top++;
+//
+//        for (int i = top; i <= bottom; ++i)
+//            cout << matrix[i][right] << " ";
+//        right--;
+//
+//        if (top <= bottom) {
+//            for (int i = right; i >= left; --i)
+//                cout << matrix[bottom][i] << " ";
+//            bottom--;
+//        }
+//
+//        if (left <= right) {
+//            for (int i = bottom; i >= top; --i)
+//                cout << matrix[i][left] << " ";
+//            left++;
+//        }
+//    }
+//}
+//
+//int main() {
+//    int** matrix;
+//    int rows, cols;
+//    cout << "Enter the number of rows: ";
+//    cin >> rows;
+//    cout << "Enter the number of columns: ";
+//    cin >> cols;
+//
+//    if (rows != cols) {
+//        cout << "The matrix must be square!" << endl;
+//        return 0;
+//    }
+//    else {
+//        matrix = new int* [rows];
+//        for (int i = 0; i < rows; i++) {
+//            matrix[i] = new int[cols];
+//        }
+//
+//        for (int i = 0; i < rows; i++) {
+//            cout << "Enter the " << i + 1 << " row: " << endl;
+//            for (int j = 0; j < cols; j++) {
+//                cin >> matrix[i][j];
+//            }
+//        }
+//
+//        func(matrix, rows, cols);
+//
+//        for (int i = 0; i < rows; i++) {
+//            delete[] matrix[i];
+//        }
+//        delete[] matrix;
+//    }
+//
+//    return 0;
+//}
+
+
