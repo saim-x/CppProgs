@@ -175,56 +175,84 @@ using namespace std;
 //
 //    return 0;
 //}
-
-
+//
+//
+//#include <iostream>
+//
+//using namespace std;
+//
+//void transpose(int** matrix, int rows, int cols) {
+//    // Transpose the matrix in-place
+//    for (int i = 0; i < rows; i++) {
+//        for (int j = i + 1; j < cols; j++) {
+//            swap(matrix[i][j], matrix[j][i]);
+//        }
+//    }
+//
+//    //  transposed matrix
+//    cout << "The new matrix is: " << endl;
+//    for (int i = 0; i < rows; i++) {
+//        cout << endl;
+//        for (int j = 0; j < cols; j++) {
+//            cout << matrix[i][j] << " ";
+//        }
+//    }
+//}
+//
+//int main() {
+//    int** matrix;
+//    int rows = 3, cols = 3;
+//
+//    matrix = new int* [rows];
+//    for (int i = 0; i < rows; i++) {
+//        matrix[i] = new int[cols];
+//    }
+//
+//    int values[][3] = {
+//        {1, 2, 3},
+//        {4, 5, 6},
+//		{7, 8, 9},
+//    };
+//
+//    for (int i = 0; i < rows; i++) {
+//        for (int j = 0; j < cols; j++) {
+//            matrix[i][j] = values[i][j];
+//        }
+//    }
+//
+//    transpose(matrix, rows, cols);
+//
+//    // Deallocate 
+//    for (int i = 0; i < rows; i++) {
+//        delete[] matrix[i];
+//    }
+//    delete[] matrix;
+//
+//    return 0;
+//}
 #include <iostream>
 
-using namespace std;
-void transpose(int** matrix, int rows, int cols) {
-	int temp;
-    for (int i = 0; i < rows; i++) {
-        for (int j = 0; j  <  cols; j ++)
-        {
-            swap(matrix[i][j], matrix[j][i]);
-        }
-	}
-	cout << "The new matrix is: " << endl;
-    for (int i = 0; i < 3; i++) {
-		cout << endl;
-        for (int j = 0; j < 3; j++) {
-			cout << matrix[i][j] << " ";
-		}
-	}
-}   
+int func(int* height, int heigtharraysize) {
+	int max_area = 0;
+
+	return max_area;
+}	
 
 int main() {
-    int** matrix;
-    int rows = 3, cols = 3;
+    int heigtharraysize;
+    cout << "Enter the size of the array (The number of values of height you will be giving in the array): ";
+    cin >> heigtharraysize;
+    int* height = new int[heigtharraysize];
+    for (int i = 0; i < heigtharraysize; i++)
+    {
+		cout << "Enter the " << i + 1 << " value of height: ";
+		cin >> height[i];
+	}
+    func(height, heigtharraysize);
 
-    matrix = new int* [rows];
-    for (int i = 0; i < rows; i++) {
-        matrix[i] = new int[cols];
-    }
-
-    int values[][3] = {
-        {1, 2, 3},
-        {4, 5, 6},
-		{7, 8, 9},
-    };
-
-    for (int i = 0; i < rows; i++) {
-        for (int j = 0; j < cols; j++) {
-            matrix[i][j] = values[i][j];
-        }
-    }
-
-    transpose(matrix, rows, cols);
-
-    // Deallocate 
-    for (int i = 0; i < rows; i++) {
-        delete[] matrix[i];
-    }
-    delete[] matrix;
+    
 
     return 0;
 }
+
+
