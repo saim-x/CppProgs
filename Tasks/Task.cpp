@@ -230,27 +230,47 @@ using namespace std;
 //
 //    return 0;
 //}
+
+
+
 #include <iostream>
+using namespace std;
 
-int func(int* height, int heigtharraysize) {
-	int max_area = 0;
-
-	return max_area;
-}	
+class Solution {
+public:
+    int maxArea(int* height, int heightSize) {
+        int i = 0, j = heightSize - 1;
+        int ans = 0;
+        while (i < j) {
+            int t = min(height[i], height[j]) * (j - i);
+            ans = max(ans, t);
+            if (height[i] < height[j]) {
+                ++i;
+            }
+            else {
+                --j;
+            }
+        }
+        return ans;
+    }
+};
 
 int main() {
-    int heigtharraysize;
-    cout << "Enter the size of the array (The number of values of height you will be giving in the array): ";
-    cin >> heigtharraysize;
-    int* height = new int[heigtharraysize];
-    for (int i = 0; i < heigtharraysize; i++)
-    {
-		cout << "Enter the " << i + 1 << " value of height: ";
-		cin >> height[i];
-	}
-    func(height, heigtharraysize);
+    int heightArraySize;
+    cout << "Enter the size of the array (The number of values of height you will be giving in the array!): ";
+    cin >> heightArraySize;
 
-    
+    int* height = new int[heightArraySize];
+    for (int i = 0; i < heightArraySize; i++) {
+        cout << "Enter the " << i + 1 << " value of height: ";
+        cin >> height[i];
+    }
+
+    Solution solution;
+    int result = solution.maxArea(height, heightArraySize);
+    cout << "Max Area: " << result << endl;
+
+    delete[] height;
 
     return 0;
 }
