@@ -5,6 +5,7 @@ using namespace std;
 
 void b_main() {
 	int array_size;
+	int flag=0;
 	int temp;
 	cout << "Enter the size of the array: ";
 	cin >> array_size;
@@ -29,6 +30,21 @@ void b_main() {
 				array[i+1] = temp;
 			}
 		}
+		for (int i = 0; i < array_size; i++)
+		{
+			if (array[array_size - 2] == array[i]) {
+				flag++;
+				if (flag>=2)
+				{
+					cout << "A duplicate of the second largest number is " << array[i] << endl;
+
+				}
+				
+
+			}
+
+		}
+		cout << flag-1 << " duplicate of the second largest number are found" << endl;
 		//The Second Largest Number
 		cout << "The Second Largest Number is " << array[array_size - 2] << endl;
 		delete[] array;
