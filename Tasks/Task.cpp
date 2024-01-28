@@ -2,7 +2,6 @@
 #include <string>
 #include <vector>
 using namespace std;
-
 void b_main() {
 	int array_size;
 	int temp;
@@ -31,7 +30,6 @@ void b_main() {
 		}
 		int second_highest = array[array_size - 2];
 		second_highest = array[array_size - 2];
-		//The Second Largest Number
 		cout << "The Second Largest Number is " << second_highest << endl;
 		delete[] array;
 	}
