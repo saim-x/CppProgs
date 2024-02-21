@@ -241,6 +241,7 @@ public:
 };
 int main()
 {
+    // Creating a pet object and test the member functions
     cout << "\n\n----------------Welcome to Virtual Pet Adoption System----------------" << endl;
     Pet dog("healthy", 6, 7, {"Do backflips", "Eat nothing"}, 0);
     int user_input_for_menu = -2;
