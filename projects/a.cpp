@@ -244,6 +244,21 @@ public:
         hungerLevel += hungerchange;
     }
 };
+
+
+
+class Adopter
+{
+private:
+    string adopterName;
+    string adopterMobileNum;
+    vector<Pet> adoptedPetRecords;
+    public:
+    Adopter(string name, string mobileNum) : adopterName(name), adopterMobileNum(mobileNum) {}
+    void adoptPet(Pet pet)
+    {
+        adoptedPetRecords.push_back(pet);
+    }
 int main()
 {
     // Creating a pet object and test the member functions
@@ -292,3 +307,19 @@ int main()
     }
 }
 
+
+
+
+
+
+// Adopter Class:
+// The Adopter class serves as a representation of users who are enthusiastic about adopting virtual pets. In
+// order to enrich the functionality of this class, you are tasked with incorporating the following features:
+// adopterName and adopterMobileNum, these attributes should be initialized during the creation of an
+// Adopter object. A list named adoptedPetRecords within the Adopter class. This list should be responsible
+// for maintaining detailed records of the adopted pets by the respective adopter.
+// Implement the following member functions within the Adopter class:
+// ● adoptPet(): Allows the adopter to adopt a virtual pet and records its details.
+// ● returnPet(): Enables the adopter to return a pet, updating records accordingly.
+// ● displayAdoptedPets(): Displays detailed information about all adopted pets, including their species,
+// happiness, health, hunger, and skills.
