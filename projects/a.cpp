@@ -246,19 +246,6 @@ public:
 };
 
 
-
-class Adopter
-{
-private:
-    string adopterName;
-    string adopterMobileNum;
-    vector<Pet> adoptedPetRecords;
-    public:
-    Adopter(string name, string mobileNum) : adopterName(name), adopterMobileNum(mobileNum) {}
-    void adoptPet(Pet pet)
-    {
-        adoptedPetRecords.push_back(pet);
-    }
 int main()
 {
     // Creating a pet object and test the member functions
