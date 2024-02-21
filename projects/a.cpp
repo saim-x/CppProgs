@@ -1,3 +1,7 @@
+//Developed, Coded, Debugged, Tested, and Documented by: Muhammad Saim
+//Date: 21.2.2024
+
+
 #include <iostream>
 #include <string>
 #include <vector>
@@ -287,10 +291,3 @@ int main()
     }
 }
 
-// Implement the following member functions within the Pet class:
-// ● displayPetDetails(): Displays detailed information about the pet, including happiness level, health
-// status, hunger level, and special skills.
-// ● updateHappiness(): Updates the pet's happiness level based on user interactions.
-// ● updateHealth(): Updates the health status of the pet, considering any changes in health.
-// ● updateHunger(): Updates the hunger level of the pet, accounting for feeding or other relevant
-// actions.
