@@ -28,11 +28,11 @@ public:
         }
         else if (happinessLevel > 5)
         {
-            cout << "\nYour pet is happy! He's playful." << endl;
+            cout << "\nYour pet is happy!" << endl;
         }
         else if (happinessLevel > 3)
         {
-            cout << "\nYour pet is okay & neutral." << endl;
+            cout << "\nYour pet is okay." << endl;
         }
         else
         {
@@ -257,7 +257,9 @@ int main()
         cin >> user_input_for_menu;
         switch (user_input_for_menu)
         {
-
+        case 0:
+            cout << "Exiting the program." << endl;
+            break;
         case 1:
             dog.displayPetDetails();
             break;
