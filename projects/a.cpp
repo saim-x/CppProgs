@@ -217,6 +217,7 @@ public:
             break;
         }
         hungerLevel += hungerchange;
+        happinessLevel += hungerchange;
         cout << "The system has updated the hunger level of the pet.\n";
     }
     void updateHungerThroughUserInput()
