@@ -79,11 +79,12 @@ public:
         default:
             break;
         }
-        
+
         happinessLevel += happinessChange;
         cout << "Interaction completed. Current happiness: " << happinessLevel << endl;
     }
-    void updateHappinessThroughUserinput(){
+    void updateHappinessThroughUserinput()
+    {
         int user_input;
         cout << "Enter the option to  make him happy, sad, or angry.\n";
         cout << "1. Hug the pet: \n";
@@ -97,7 +98,7 @@ public:
             cout << "You hugged your pet. " << endl;
             happinessChange = 2;
             break;
-        case 2: 
+        case 2:
             cout << "You spanked your pet. " << endl;
             happinessChange = -2;
             break;
@@ -109,7 +110,6 @@ public:
             break;
         }
         happinessLevel += happinessChange;
-        
     }
     void updateHealth()
     {
@@ -130,7 +130,7 @@ public:
             healthChange = 0;
             break;
         case 3:
-            cout << "The system has seen quite improvement in the health of your pet.\n" << endl;
+            cout << "The system has seen quite improvement in the health of your pet." << endl;
             healthChange = 2;
             break;
         default:
@@ -160,7 +160,40 @@ public:
         {
             healthStatus = "Very Sick";
         }
-        
+    }
+    void udpateHealthThroughUserInput()
+    {
+        int user_input;
+        cout << "Enter the option to  make an appointment for your pet.\n";
+        cout << "1. Make an appointment for your pet: \n";
+        cout << "2. Ignore the pet: \n";
+        cin >> user_input;
+        int healthChange = 0;
+        switch (user_input)
+        {
+        case 1:
+            cout << "You made an appointment for your pet. " << endl;
+            healthChange = 2;
+            break;
+        case 2:
+            cout << "You ignored your pet. " << endl;
+            healthChange = -1;
+            break;
+        default:
+            break;
+        }
+        if (healthPoints < 10 && healthPoints > 0)
+        {
+            healthPoints += healthChange;
+        }
+        else if (healthPoints == 10)
+        {
+            cout << "The pet's health has reached its maximum level.\n";
+        }
+        else if (healthPoints == 0)
+        {
+            cout << "The pet is dangerously ill.\n";
+        }
     }
     void updateHunger()
     {
@@ -182,7 +215,8 @@ public:
         hungerLevel += hungerchange;
         cout << "The system has updated the hunger level of the pet.\n";
     }
-    void updateHungerThroughUserInput(){
+    void updateHungerThroughUserInput()
+    {
         int user_input;
         cout << "Enter the option to  feed your pet or ignore him.\n";
         cout << "1. Feed the pet: \n";
@@ -195,7 +229,7 @@ public:
             cout << "You fed your pet. " << endl;
             hungerchange = 1;
             break;
-        case 2: 
+        case 2:
             cout << "You ignored your pet. " << endl;
             hungerchange = -1;
             break;
@@ -204,7 +238,6 @@ public:
         }
         hungerLevel += hungerchange;
     }
-    
 };
 int main()
 {
@@ -216,22 +249,15 @@ int main()
         cout << "\n\n";
         cout << "Enter the option number: " << endl;
         cout << "1. View Pet Information" << endl;
-        cout << "2. Interact with your pet" << endl;
-        cout << "3. Feed your pet" << endl;
-        cout << "4. Make Appointment for your pet" << endl;
+        cout << "2. Interact with your pet ( Update Happiness)" << endl;
+        cout << "3. Feed your pet (Update Hunger)" << endl;
+        cout << "4. Make Appointment for your pet ( Update Health)" << endl;
         cout << "5. Simulate the whole system for a test run, Just Sit and Watch the demo of our system" << endl;
         cout << "0. Exit the Program" << endl;
         cin >> user_input_for_menu;
         switch (user_input_for_menu)
         {
-        case 5:
-            // System Demo Simulation
-            cout << "Creating a virtual demo pet for you!" << endl;
-            dog.displayPetDetails();
-            dog.updateHappiness();
-            dog.updateHealth();
-            dog.updateHunger();
-            break;
+
         case 1:
             dog.displayPetDetails();
             break;
@@ -239,6 +265,17 @@ int main()
             dog.updateHappinessThroughUserinput();
             break;
         case 3:
+            dog.updateHungerThroughUserInput();
+            break;
+        case 4:
+            dog.udpateHealthThroughUserInput();
+            break;
+        case 5:
+            // System Demo Simulation
+            cout << "Creating a virtual demo pet for you!" << endl;
+            dog.displayPetDetails();
+            dog.updateHappiness();
+            dog.updateHealth();
             dog.updateHunger();
             break;
         default:
