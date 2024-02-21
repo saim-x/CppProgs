@@ -79,9 +79,17 @@ public:
         default:
             break;
         }
-
+        
         happinessLevel += happinessChange;
         cout << "Interaction completed. Current happiness: " << happinessLevel << endl;
+    }
+    void updateHappinessThroughUserinput(){
+        int user_input;
+        cout << "Enter the option to  make him happy, sad, angry, or neutral.\n";
+        cout << "1. Hug the pet: \n";
+        cout << "2. Spank the pet: \n";
+        cout << "3. Ignore the pet: \n";
+        
     }
     void updateHealth()
     {
@@ -154,6 +162,7 @@ public:
         hungerLevel += hungerchange;
         cout << "The system has updated the hunger level of the pet.\n";
     }
+    
 };
 int main()
 {
@@ -165,16 +174,15 @@ int main()
         cout << "\n\n";
         cout << "Enter the option number: " << endl;
         cout << "1. View Pet Information" << endl;
-        cout << "2. Register a new Pet" << endl;
-        cout << "3. Interact with your pet" << endl;
-        cout << "4. Feed your lovely pet" << endl;
-        cout << "5. Make Appointment for your pet" << endl;
-        cout << "6. Simulate the whole system for a test run, Just Sit and Watch the demo of our system" << endl;
+        cout << "2. Interact with your pet" << endl;
+        cout << "3. Feed your lovely pet" << endl;
+        cout << "4. Make Appointment for your pet" << endl;
+        cout << "5. Simulate the whole system for a test run, Just Sit and Watch the demo of our system" << endl;
         cout << "0. Exit the Program" << endl;
         cin >> user_input_for_menu;
         switch (user_input_for_menu)
         {
-        case 6:
+        case 5:
             // System Demo Simulation
             cout << "Creating a virtual demo pet for you!" << endl;
             dog.displayPetDetails();
@@ -183,8 +191,10 @@ int main()
             dog.updateHunger();
             break;
         case 1:
-
             dog.displayPetDetails();
+            break;
+        case 2:
+            
             break;
         default:
             break;
