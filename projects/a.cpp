@@ -2,7 +2,6 @@
 #include <string>
 #include <vector>
 
-
 using namespace std;
 class Pet
 {
@@ -125,14 +124,20 @@ public:
         {
             healthStatus = "Healthy";
         }
+        else if (healthPoints <= 2 && healthPoints > 0)
+        {
+            healthStatus = "Sick";
+        }
         else
         {
-            healthStatus = "Ill";
+            healthStatus = "Very Sick";
         }
+        
     }
-    void updateHunger(){
+    void updateHunger()
+    {
         int hungerchange = 0;
-        int randomNumber = 1; 
+        int randomNumber = 1;
         switch (randomNumber)
         {
         case 1:
@@ -146,12 +151,15 @@ public:
         default:
             break;
         }
+        hungerLevel += hungerchange;
+        cout << "The system has updated the hunger level of the pet.\n";
     }
 };
 int main()
 {
     cout << "\n\n----------------Welcome to Virtual Pet Adoption System----------------" << endl;
-    int user_input_for_menu;
+    Pet dog("healthy", 6, 7, {"Do backflips", "Eat nothing"}, 0);
+    int user_input_for_menu = -2;
     while (user_input_for_menu != 0)
     {
         cout << "\n\n";
@@ -169,24 +177,25 @@ int main()
         case 6:
             // System Demo Simulation
             cout << "Creating a virtual demo pet for you!" << endl;
-            Pet dog("healthy", 6, 7, {"Do backflips", "Eat nothing"}, 0);
-
+            dog.displayPetDetails();
+            dog.updateHappiness();
+            dog.updateHealth();
+            dog.updateHunger();
+            break;
+        case 1:
 
             dog.displayPetDetails();
-
-            dog.updateHappiness();
-            dog.updateHealth(); 
-            
-            break;             
-
+            break;
+        default:
+            break;
         }
     }
 }
 
-    // Implement the following member functions within the Pet class:
-    // ● displayPetDetails(): Displays detailed information about the pet, including happiness level, health
-    // status, hunger level, and special skills.
-    // ● updateHappiness(): Updates the pet's happiness level based on user interactions.
-    // ● updateHealth(): Updates the health status of the pet, considering any changes in health.
-    // ● updateHunger(): Updates the hunger level of the pet, accounting for feeding or other relevant
-    // actions.
+// Implement the following member functions within the Pet class:
+// ● displayPetDetails(): Displays detailed information about the pet, including happiness level, health
+// status, hunger level, and special skills.
+// ● updateHappiness(): Updates the pet's happiness level based on user interactions.
+// ● updateHealth(): Updates the health status of the pet, considering any changes in health.
+// ● updateHunger(): Updates the hunger level of the pet, accounting for feeding or other relevant
+// actions.
