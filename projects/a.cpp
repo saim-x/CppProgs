@@ -1,6 +1,5 @@
-//Developed, Coded, Debugged, Tested, and Documented by: Muhammad Saim
-//Date: 21.2.2024
-
+// Developed, Coded, Debugged, Tested, and Documented by: Muhammad Saim
+// Date: 21.2.2024
 
 #include <iostream>
 #include <string>
@@ -15,15 +14,47 @@ private:
     int happinessLevel;
     vector<string> specialSkills;
     int healthPoints;
+    string species;
 
 public:
-    Pet() : healthStatus(""), hungerLevel(0), happinessLevel(0), healthPoints(0) {}
+    Pet() : healthStatus(""), hungerLevel(0), happinessLevel(0), healthPoints(0), species("") {}
 
-    Pet(string health_status, int hunger_level, int happiness_status, const vector<string> &special_Skills, int health_points) : healthStatus(health_status), hungerLevel(hunger_level), happinessLevel(happiness_status), specialSkills(special_Skills), healthPoints(health_points) {}
+    Pet(string health_status, int hunger_level, int happiness_status, const vector<string> &special_Skills, int health_points, string species_name) : healthStatus(health_status), hungerLevel(hunger_level), happinessLevel(happiness_status), specialSkills(special_Skills), healthPoints(health_points), species(species_name) {}
+
+
+    string getSpecies() const
+    {
+        return species;
+    }
+    int getHappiness() const
+    {
+        return happinessLevel;
+    }
+    int getHealth() const
+    {
+        return healthPoints;
+    }
+    int getHunger() const
+    {
+        return hungerLevel;
+    }
+    string getSkills() const
+    {
+        string skills = "";
+        for (size_t i = 0; i < specialSkills.size(); ++i)
+        {
+            if (!specialSkills[i].empty())
+            {
+                skills += specialSkills[i] + ", ";
+            }
+        }
+        return skills;
+    }
 
     void displayPetDetails()
     {
         cout << "\nFollowing are the details of your pet: " << endl;
+        cout << "Species: " << species << endl;
         cout << "\nYour pet is " << healthStatus << "\nThe hunger level of your pet is " << hungerLevel;
         // Conditions if the pet is happy or not to display
         if (happinessLevel > 7)
@@ -244,20 +275,87 @@ public:
         hungerLevel += hungerchange;
     }
 };
+
 class Adopter
-{   
-    private:
-    string adopterName;
-    string adopterMobileNum;
-    vector<Pet> adoptedPetRecords;
-    
+{
+private:
+    std::string adopterName;
+    std::string adopterMobileNum;
+    Pet **adoptedPetRecords; // Array of pointers to Pet objects
+    int maxPets;             // Maximum number of pets an adopter can have
+
+public:
+    // Constructor to initialize Adopter object
+    Adopter(std::string name, std::string mobileNum, int maxPets)
+        : adopterName(name), adopterMobileNum(mobileNum), maxPets(maxPets)
+    {
+        adoptedPetRecords = new Pet *[maxPets]; // Allocate memory for the array of pointers
+        for (int i = 0; i < maxPets; ++i)
+        {
+            adoptedPetRecords[i] = nullptr; // Initialize each pointer to nullptr
+        }
+    }
+
+    // Destructor to free the allocated memory
+    ~Adopter()
+    {
+        for (int i = 0; i < maxPets; ++i)
+        {
+            delete adoptedPetRecords[i]; // Delete each Pet object
+        }
+        delete[] adoptedPetRecords; // Delete the array of pointers
+    }
+
+    // Function to adopt a pet
+    void adoptPet(Pet *pet)
+    {
+        // Find an empty slot in the array to add the adopted pet
+        for (int i = 0; i < maxPets; ++i)
+        {
+            if (adoptedPetRecords[i] == nullptr)
+            {
+                adoptedPetRecords[i] = pet; // Assign the pointer to the adopted pet
+                return;
+            }
+        }
+        std::cout << "You have reached the maximum number of adopted pets." << std::endl;
+    }
+
+    // Function to return a pet
+    void returnPet(int index)
+    {
+        if (index >= 0 && index < maxPets && adoptedPetRecords[index] != nullptr)
+        {
+            delete adoptedPetRecords[index];    // Delete the Pet object
+            adoptedPetRecords[index] = nullptr; // Set the pointer to nullptr
+            std::cout << "Pet returned successfully." << std::endl;
+        }
+        else
+        {
+            std::cout << "Invalid index or no pet at the specified index." << std::endl;
+        }
+    }
+
+    // Function to display adopted pets' information
+    void displayAdoptedPets()
+    {
+        std::cout << "Adopted Pets Information:" << std::endl;
+        for (int i = 0; i < maxPets; ++i)
+        {
+            if (adoptedPetRecords[i] != nullptr)
+            {
+                // Access and display pet information using the pointer
+                std::cout << "Pet " << i + 1 << ": Species - " << adoptedPetRecords[i]->getSpecies()<< ", Happiness - " << adoptedPetRecords[i]->getHappiness()<< ", Health - " << adoptedPetRecords[i]->getHealth()<< ", Hunger - " << adoptedPetRecords[i]->getHunger()<< ", Skills - " << adoptedPetRecords[i]->getSkills() << std::endl;
+            }
+        }
+    }
 };
 
 int main()
 {
     // Creating a pet object and test the member functions
     cout << "\n\n----------------Welcome to Virtual Pet Adoption System----------------" << endl;
-    Pet dog("healthy", 6, 7, {"Do backflips", "Eat nothing"}, 0);
+    Pet dog("healthy", 6, 7, {"Do backflips", "Eat nothing"}, 0, "Husky");
     int user_input_for_menu = -2;
     while (user_input_for_menu != 0)
     {
@@ -268,6 +366,9 @@ int main()
         cout << "3. Feed your pet (Update Hunger)" << endl;
         cout << "4. Make Appointment for your pet ( Update Health)" << endl;
         cout << "5. Simulate the whole system for a test run, Just Sit and Watch the demo of our system" << endl;
+        cout << "6. Adopt a pet" << endl;
+        cout << "7. Return a pet" << endl;
+        cout << "8. Display Adopted Pets" << endl;
         cout << "0. Exit the Program" << endl;
         cin >> user_input_for_menu;
         switch (user_input_for_menu)
@@ -300,11 +401,6 @@ int main()
         }
     }
 }
-
-
-
-
-
 
 // Adopter Class:
 // The Adopter class serves as a representation of users who are enthusiastic about adopting virtual pets. In
