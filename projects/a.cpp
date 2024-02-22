@@ -21,7 +21,6 @@ public:
 
     Pet(string health_status, int hunger_level, int happiness_status, const vector<string> &special_Skills, int health_points, string species_name) : healthStatus(health_status), hungerLevel(hunger_level), happinessLevel(happiness_status), specialSkills(special_Skills), healthPoints(health_points), species(species_name) {}
 
-
     string getSpecies() const
     {
         return species;
@@ -279,73 +278,67 @@ public:
 class Adopter
 {
 private:
-    std::string adopterName;
-    std::string adopterMobileNum;
-    Pet **adoptedPetRecords; // Array of pointers to Pet objects
-    int maxPets;             // Maximum number of pets an adopter can have
+    string adopterName;
+    string adopterMobileNum;
+    Pet **adoptedPetRecords;
+    int maxPets;             
 
 public:
-    // Constructor to initialize Adopter object
-    Adopter(std::string name, std::string mobileNum, int maxPets)
+    Adopter(string name, string mobileNum, int maxPets)
         : adopterName(name), adopterMobileNum(mobileNum), maxPets(maxPets)
     {
-        adoptedPetRecords = new Pet *[maxPets]; // Allocate memory for the array of pointers
+        adoptedPetRecords = new Pet *[maxPets]; 
         for (int i = 0; i < maxPets; ++i)
         {
-            adoptedPetRecords[i] = nullptr; // Initialize each pointer to nullptr
+            adoptedPetRecords[i] = nullptr;
         }
     }
 
-    // Destructor to free the allocated memory
+
     ~Adopter()
     {
         for (int i = 0; i < maxPets; ++i)
         {
-            delete adoptedPetRecords[i]; // Delete each Pet object
+            delete adoptedPetRecords[i]; 
         }
-        delete[] adoptedPetRecords; // Delete the array of pointers
+        delete[] adoptedPetRecords; 
     }
 
-    // Function to adopt a pet
     void adoptPet(Pet *pet)
     {
-        // Find an empty slot in the array to add the adopted pet
         for (int i = 0; i < maxPets; ++i)
         {
             if (adoptedPetRecords[i] == nullptr)
             {
-                adoptedPetRecords[i] = pet; // Assign the pointer to the adopted pet
+                adoptedPetRecords[i] = pet; 
                 return;
             }
         }
-        std::cout << "You have reached the maximum number of adopted pets." << std::endl;
+        cout << "You have reached the maximum number of adopted pets." << endl;
     }
 
-    // Function to return a pet
     void returnPet(int index)
     {
         if (index >= 0 && index < maxPets && adoptedPetRecords[index] != nullptr)
         {
-            delete adoptedPetRecords[index];    // Delete the Pet object
-            adoptedPetRecords[index] = nullptr; // Set the pointer to nullptr
-            std::cout << "Pet returned successfully." << std::endl;
+            delete adoptedPetRecords[index];   
+            adoptedPetRecords[index] = nullptr; 
+            cout << "Pet returned successfully." << endl;
         }
         else
         {
-            std::cout << "Invalid index or no pet at the specified index." << std::endl;
+            cout << "Invalid index or no pet at the specified index." << endl;
         }
     }
 
-    // Function to display adopted pets' information
     void displayAdoptedPets()
     {
-        std::cout << "Adopted Pets Information:" << std::endl;
+        cout << "Adopted Pets Information:" << endl;
         for (int i = 0; i < maxPets; ++i)
         {
             if (adoptedPetRecords[i] != nullptr)
             {
-                // Access and display pet information using the pointer
-                std::cout << "Pet " << i + 1 << ": Species - " << adoptedPetRecords[i]->getSpecies()<< ", Happiness - " << adoptedPetRecords[i]->getHappiness()<< ", Health - " << adoptedPetRecords[i]->getHealth()<< ", Hunger - " << adoptedPetRecords[i]->getHunger()<< ", Skills - " << adoptedPetRecords[i]->getSkills() << std::endl;
+                cout << "Pet " << i + 1 << ": Species - " << adoptedPetRecords[i]->getSpecies() << ", Happiness - " << adoptedPetRecords[i]->getHappiness() << ", Health - " << adoptedPetRecords[i]->getHealth() << ", Hunger - " << adoptedPetRecords[i]->getHunger() << ", Skills - " << adoptedPetRecords[i]->getSkills() << endl;
             }
         }
     }
@@ -353,7 +346,6 @@ public:
 
 int main()
 {
-    // Creating a pet object and test the member functions
     cout << "\n\n----------------Welcome to Virtual Pet Adoption System----------------" << endl;
     Pet dog("healthy", 6, 7, {"Do backflips", "Eat nothing"}, 0, "Husky");
     int user_input_for_menu = -2;
@@ -396,6 +388,25 @@ int main()
             dog.updateHealth();
             dog.updateHunger();
             break;
+        case 6:
+        {
+            Adopter adopter("Muhammad Saim", "03152682017", 3);
+            adopter.adoptPet(&dog);
+            cout << "Pet adopted successfully." << endl;
+            break;
+        }
+        case 7:
+        {
+            Adopter adopter("Muhammad Saim", "03152682017", 3);
+            adopter.returnPet(0);
+            break;
+        }
+        case 8:
+        {
+            Adopter adopter("Muhammad Saim", "03152682017", 3);
+            adopter.displayAdoptedPets();
+            break;
+        }
         default:
             break;
         }
