@@ -49,7 +49,10 @@ public:
         }
         return skills;
     }
-
+    string getHealthStatus() const
+    {
+        return healthStatus;
+    }
     void displayPetDetails()
     {
         cout << "\nFollowing are the details of your pet: " << endl;
@@ -305,61 +308,70 @@ public:
 
     void adoptPet(Pet *pet)
     {
-        for (int i = 0; i < maxPets; ++i)
+        int i = 0;
+        while (i < maxPets && adoptedPetRecords[i] != nullptr)
         {
-            if (adoptedPetRecords[i] == nullptr)
-            {
-                cout << "Pet ofindex " << i << " adopted successfully." << endl;
-                adoptedPetRecords[i] = pet;
-                cout << adoptedPetRecords[0]->getSpecies() << endl;
-                return;
-            }
-            else
-            {
-                cout << "No space for more pets." << endl;
-                cout << "You have reached the maximum number of adopted pets." << endl;
-            }
+            i++;
+        }
+
+        if (i < maxPets)
+        {
+            cout << "Pet of index " << i << " adopted successfully." << endl;
+            adoptedPetRecords[i] = pet;
+            cout << "Adopter Name: " << adopterName << " have adopted the pet " << adoptedPetRecords[i]->getSpecies() << endl;
+        }
+        else
+        {
+            cout << "No space for more pets." << endl;
+            cout << "You have reached the maximum number of adopted pets." << endl;
         }
     }
-
     void returnPet(int index)
     {
         if (index >= 0 && index < maxPets && adoptedPetRecords[index] != nullptr)
         {
-            delete adoptedPetRecords[index];
             adoptedPetRecords[index] = nullptr;
+
             cout << "Pet returned successfully." << endl;
         }
         else
         {
-            cout << "Invalid index or no pet at the specified index." << endl;
+            cout << "No pet at the specified index." << endl;
         }
     }
 
     void displayAdoptedPets()
     {
+        int count = 0;
         cout << "Adopted Pets Information:" << endl;
         for (int i = 0; i < maxPets; ++i)
         {
             if (adoptedPetRecords[i] != nullptr)
             {
-                cout << "Pet " << i + 1 << ": Species - " << adoptedPetRecords[i]->getSpecies() << ", Happiness - " << adoptedPetRecords[i]->getHappiness() << ", Health - " << adoptedPetRecords[i]->getHealth() << ", Hunger - " << adoptedPetRecords[i]->getHunger() << ", Skills - " << adoptedPetRecords[i]->getSkills() << endl;
+                cout << "Pet " << i + 1 << ": Species - " << adoptedPetRecords[i]->getSpecies() << ", Happiness - " << adoptedPetRecords[i]->getHappiness() << ", Health - " << adoptedPetRecords[i]->getHealthStatus() << ", Hunger - " << adoptedPetRecords[i]->getHunger() << ", Skills - " << adoptedPetRecords[i]->getSkills() << endl;
             }
             else
             {
-                cout << "No pet at index " << i << endl;
+                count++;
             }
         }
-        // cout << "Adopter Name: " << adopterName << endl;
-        // cout << "Adopter Mobile Number: " << adopterMobileNum << endl;
-        // cout << "Maximum Pets: " << maxPets << endl;
+        if (count == maxPets)
+        {
+            cout << "no pets have been adopted yet." << endl;
+        }
     }
 };
+void devinfo()
+{
+    cout << "\n\nDeveloped, Coded, Debugged, Tested, and Documented by: Muhammad Saim" << endl;
+    cout << "Date: 21.2.2024" << endl;
+}
 
 int main()
 {
+    devinfo();
     cout << "\n\n----------------Welcome to Virtual Pet Adoption System----------------" << endl;
-    Pet dog("healthy", 6, 7, {"Do backflips", "Eat nothing"}, 0, "Husky");
+    Pet dog("healthy", 6, 7, {"Do backflips", "Extremely Playful", "Participates in Beauty Competition."}, 0, "Husky");
     Adopter adopter("Muhammad Saim", "03152682017", 3);
 
     int user_input_for_menu = -2;
@@ -377,6 +389,7 @@ int main()
         cout << "8. Display Adopted Pets" << endl;
         cout << "0. Exit the Program" << endl;
         cin >> user_input_for_menu;
+
         switch (user_input_for_menu)
         {
         case 0:
@@ -403,27 +416,32 @@ int main()
             dog.updateHunger();
             break;
         case 6:
-        {
             adopter.adoptPet(&dog);
             break;
-        }
         case 7:
-        {
-            Adopter adopter("Muhammad Saim", "03152682017", 3);
-            cout << "Returning the pet of first index for demonstration" << endl;
-            adopter.returnPet(0);
+            int index_number_by_user;
+            cout << "Enter the number of the pet you want to return(1-3): ";
+            cin >> index_number_by_user;
+            if (index_number_by_user < 1 || index_number_by_user > 3)
+            {
+                cout << "Invalid input entered, Please enter a number between 1 & 3." << endl;
+            }
+            else
+            {
+                cout << "Returning the " << index_number_by_user << "Pet" << endl;
+                adopter.returnPet(index_number_by_user - 1);
+            }
+
             break;
-        }
         case 8:
-        {
-            Adopter adopter("Muhammad Saim", "03152682017", 3);
             adopter.displayAdoptedPets();
             break;
-        }
         default:
             break;
         }
     }
+
+    return 0;
 }
 
 // Adopter Class:

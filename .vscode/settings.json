@@ -59,6 +59,7 @@
   "files.associations": {
     "stdio.h": "c",
     "ctime": "cpp",
-    "cstdlib": "cpp"
+    "cstdlib": "cpp",
+    "ostream": "cpp"
   }
 }
