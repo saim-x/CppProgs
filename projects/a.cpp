@@ -244,7 +244,14 @@ public:
         hungerLevel += hungerchange;
     }
 };
-
+class Adopter
+{   
+    private:
+    string adopterName;
+    string adopterMobileNum;
+    vector<Pet> adoptedPetRecords;
+    
+};
 
 int main()
 {
