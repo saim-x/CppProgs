@@ -281,27 +281,26 @@ private:
     string adopterName;
     string adopterMobileNum;
     Pet **adoptedPetRecords;
-    int maxPets;             
+    int maxPets;
 
 public:
     Adopter(string name, string mobileNum, int maxPets)
         : adopterName(name), adopterMobileNum(mobileNum), maxPets(maxPets)
     {
-        adoptedPetRecords = new Pet *[maxPets]; 
+        adoptedPetRecords = new Pet *[maxPets];
         for (int i = 0; i < maxPets; ++i)
         {
             adoptedPetRecords[i] = nullptr;
         }
     }
-
-
+    // Destructor
     ~Adopter()
     {
         for (int i = 0; i < maxPets; ++i)
         {
-            delete adoptedPetRecords[i]; 
+            delete adoptedPetRecords[i];
         }
-        delete[] adoptedPetRecords; 
+        delete[] adoptedPetRecords;
     }
 
     void adoptPet(Pet *pet)
@@ -310,19 +309,25 @@ public:
         {
             if (adoptedPetRecords[i] == nullptr)
             {
-                adoptedPetRecords[i] = pet; 
+                cout << "Pet ofindex " << i << " adopted successfully." << endl;
+                adoptedPetRecords[i] = pet;
+                cout << adoptedPetRecords[0]->getSpecies() << endl;
                 return;
             }
+            else
+            {
+                cout << "No space for more pets." << endl;
+                cout << "You have reached the maximum number of adopted pets." << endl;
+            }
         }
-        cout << "You have reached the maximum number of adopted pets." << endl;
     }
 
     void returnPet(int index)
     {
         if (index >= 0 && index < maxPets && adoptedPetRecords[index] != nullptr)
         {
-            delete adoptedPetRecords[index];   
-            adoptedPetRecords[index] = nullptr; 
+            delete adoptedPetRecords[index];
+            adoptedPetRecords[index] = nullptr;
             cout << "Pet returned successfully." << endl;
         }
         else
@@ -340,7 +345,14 @@ public:
             {
                 cout << "Pet " << i + 1 << ": Species - " << adoptedPetRecords[i]->getSpecies() << ", Happiness - " << adoptedPetRecords[i]->getHappiness() << ", Health - " << adoptedPetRecords[i]->getHealth() << ", Hunger - " << adoptedPetRecords[i]->getHunger() << ", Skills - " << adoptedPetRecords[i]->getSkills() << endl;
             }
+            else
+            {
+                cout << "No pet at index " << i << endl;
+            }
         }
+        // cout << "Adopter Name: " << adopterName << endl;
+        // cout << "Adopter Mobile Number: " << adopterMobileNum << endl;
+        // cout << "Maximum Pets: " << maxPets << endl;
     }
 };
 
@@ -348,6 +360,8 @@ int main()
 {
     cout << "\n\n----------------Welcome to Virtual Pet Adoption System----------------" << endl;
     Pet dog("healthy", 6, 7, {"Do backflips", "Eat nothing"}, 0, "Husky");
+    Adopter adopter("Muhammad Saim", "03152682017", 3);
+
     int user_input_for_menu = -2;
     while (user_input_for_menu != 0)
     {
@@ -390,14 +404,13 @@ int main()
             break;
         case 6:
         {
-            Adopter adopter("Muhammad Saim", "03152682017", 3);
             adopter.adoptPet(&dog);
-            cout << "Pet adopted successfully." << endl;
             break;
         }
         case 7:
         {
             Adopter adopter("Muhammad Saim", "03152682017", 3);
+            cout << "Returning the pet of first index for demonstration" << endl;
             adopter.returnPet(0);
             break;
         }
