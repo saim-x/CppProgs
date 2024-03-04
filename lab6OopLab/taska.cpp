@@ -1,79 +1,79 @@
 #include <iostream>
 #include <cstring>
-
-class BankAccount {
+using namespace std;
+class BankAccount
+{
 private:
     int accountId;
     double balance;
-    int* transactionHistory;
-    int numTransactions;
+    int numofTransacs;
+    int *transactionHistory;
 
 public:
-    // Constructor
-    BankAccount(int id, double initialBalance, int* transactions, int numTrans) : 
-        accountId(id), balance(initialBalance), numTransactions(numTrans) {
-        transactionHistory = new int[numTransactions];
-        std::memcpy(transactionHistory, transactions, numTransactions * sizeof(int));
+    BankAccount(int id, double initialBalance, int *transactions, int numTrans) : accountId(id), balance(initialBalance), numofTransacs(numTrans)
+    {
+        transactionHistory = new int[numofTransacs];
+        memcpy(transactionHistory, transactions, numofTransacs * sizeof(int));
     }
 
-    // Copy constructor
-    BankAccount(const BankAccount& other) : 
-        accountId(other.accountId), balance(other.balance), numTransactions(other.numTransactions) {
-        transactionHistory = new int[numTransactions];
-        std::memcpy(transactionHistory, other.transactionHistory, numTransactions * sizeof(int));
+    BankAccount(const BankAccount &other) : accountId(other.accountId), balance(other.balance), numofTransacs(other.numofTransacs)
+    {
+        transactionHistory = new int[numofTransacs];
+        memcpy(transactionHistory, other.transactionHistory, numofTransacs * sizeof(int));
     }
 
-    // Destructor
-    ~BankAccount() {
+    ~BankAccount()
+    {
         delete[] transactionHistory;
     }
 
-    // Display function
-    void display() const {
-        std::cout << "Account ID: " << accountId << std::endl;
-        std::cout << "Balance: $" << balance << std::endl;
-        std::cout << "Transaction History: ";
-        for (int i = 0; i < numTransactions; ++i) {
-            std::cout << transactionHistory[i] << " ";
+    void display() const
+    {
+        cout << "Account ID: " << accountId << endl;
+        cout << "Balance: Rs" << balance << endl;
+        cout << "Transaction History: ";
+        for (int i = 0; i < numofTransacs; ++i)
+        {
+            cout << transactionHistory[i] << " ";
         }
-        std::cout << std::endl;
+        cout << endl;
     }
 
-    // Update transaction history function
-    void updateTransactionHistory(int* newTransactions, int newNumTrans) {
+    void updateTransactionHistory(int *newTransactions, int newNumTrans)
+    {
         delete[] transactionHistory;
-        numTransactions = newNumTrans;
-        transactionHistory = new int[numTransactions];
-        std::memcpy(transactionHistory, newTransactions, numTransactions * sizeof(int));
+        numofTransacs = newNumTrans;
+        transactionHistory = new int[numofTransacs];
+        memcpy(transactionHistory, newTransactions, numofTransacs * sizeof(int));
     }
 };
-
-int main() {
-    // Initial transaction history
+void dev()
+{
+    cout << "-----------------Developed by Muhammad Saim-----------------" << endl;
+    cout << "-----------------ID: 23K-0708-------------------------------" << endl;
+}
+int main()
+{
+    dev();
     int transactions[] = {100, -50, 200, -100};
-    int numTransactions = sizeof(transactions) / sizeof(transactions[0]);
+    int numofTransacs = sizeof(transactions) / sizeof(transactions[0]);
 
-    // Create a BankAccount object with initial account details and transaction history
-    BankAccount account1(12345, 1000.0, transactions, numTransactions);
+    BankAccount account1(12345, 1000.0, transactions, numofTransacs);
 
-    // Create a copy of the original account
     BankAccount account2 = account1;
 
-    // Display details of both original and copied accounts
-    std::cout << "Original Account:" << std::endl;
+    cout << "Original Account:" << endl;
     account1.display();
-    std::cout << std::endl;
-    std::cout << "Copied Account:" << std::endl;
+    cout << endl;
+    cout << "Copied Account:" << endl;
     account2.display();
-    std::cout << std::endl;
+    cout << endl;
 
-    // Update transaction history of the original account
-    int newTransactions[] = {150, -75, 300};
-    int newNumTransactions = sizeof(newTransactions) / sizeof(newTransactions[0]);
-    account1.updateTransactionHistory(newTransactions, newNumTransactions);
+    int newTransactions[] = {1050, -750, 1000};
+    int newnumofTransacs = sizeof(newTransactions) / sizeof(newTransactions[0]);
+    account1.updateTransactionHistory(newTransactions, newnumofTransacs);
 
-    // Display the updated original account
-    std::cout << "Original Account after update:" << std::endl;
+    cout << "Original Account after update:" << endl;
     account1.display();
 
     return 0;

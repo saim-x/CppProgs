@@ -19,7 +19,7 @@ public:
     Image(int widthh, int heightt, int *data) : width(widthh), height(heightt)
     {
         imageData = new int[width * height];
-        // I am Copyingg data from input array to imageData
+        // I am Copyingg data from input array to imageData here
         memcpy(imageData, data, width * height * sizeof(int));
     }
 
@@ -60,9 +60,14 @@ public:
         }
     }
 };
+void dev(){
+    cout << "-----------------Developed by Muhammad Saim-----------------" << endl;
+    cout << "-----------------ID: 23K-0708-------------------------------" << endl;
 
+}
 int main()
 {
+    dev();
     int sampleData[] = {1, -6, 2, 4, 6, -1};
 
     Image originalImage(2, 3, sampleData);
