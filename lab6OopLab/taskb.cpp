@@ -1,8 +1,11 @@
+//Coded, Designed and Developed by Muhammad Saim 23-0708
+
+
 #include <iostream>
 #include <cstdlib>
 #include <ctime>
 #include <cstring> // Include <cstring> for memcpy
-
+using namespace std;
 class Image {
 private:
     int width;
@@ -13,13 +16,13 @@ public:
     // Constructor
     Image(int w, int h, int* data) : width(w), height(h) {
         imageData = new int[width * height];
-        std::memcpy(imageData, data, width * height * sizeof(int));
+        memcpy(imageData, data, width * height * sizeof(int));
     }
 
     // Copy constructor
     Image(const Image& other) : width(other.width), height(other.height) {
         imageData = new int[width * height];
-        std::memcpy(imageData, other.imageData, width * height * sizeof(int));
+        memcpy(imageData, other.imageData, width * height * sizeof(int));
     }
 
     // Destructor
@@ -29,12 +32,12 @@ public:
 
     // Display function
     void display() const {
-        std::cout << "Image Data:" << std::endl;
+        cout << "Image Data:" << endl;
         for (int i = 0; i < height; ++i) {
             for (int j = 0; j < width; ++j) {
-                std::cout << imageData[i * width + j] << " ";
+                cout << imageData[i * width + j] << " ";
             }
-            std::cout << std::endl;
+            cout << endl;
         }
     }
 
@@ -60,22 +63,23 @@ int main() {
     Image copiedImage = originalImage;
 
     // Display data of both original and copied images
-    std::cout << "Original Image:" << std::endl;
+    cout << "Original Image:" << endl;
     originalImage.display();
-    std::cout << std::endl;
-    std::cout << "Copied Image:" << std::endl;
+    cout << endl;
+    cout << "Copied Image:" << endl;
     copiedImage.display();
-    std::cout << std::endl;
+    cout << endl;
 
     // Update data and display again
     originalImage.updateData();
     copiedImage.updateData();
 
-    std::cout << "Original Image after update:" << std::endl;
+    cout << "Original Image after update:" << endl;
     originalImage.display();
-    std::cout << std::endl;
-    std::cout << "Copied Image after update:" << std::endl;
+    cout << endl;
+    cout << "Copied Image after update:" << endl;
     copiedImage.display();
+    
 
     return 0;
 }
